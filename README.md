@@ -16,6 +16,18 @@ Module does not require Magento initialization, so you can install it either as 
 
 ## Usage Examples
 
+### CLI
+
+```shell
+bin/magento setup:config:validate
+
+# There is also verbose version:
+bin/magento setup:config:validate -v
+# Contents of `config.php` is not up to date
+# Modules should be removed from `config.php`: LBajsarowicz_Example
+# Modules missing from `config.php`: Magento_Amqp
+```
+
 ### Github Workflow
 
 ```yaml
