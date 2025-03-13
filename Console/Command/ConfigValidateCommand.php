@@ -43,8 +43,25 @@ class ConfigValidateCommand extends Command
             $result[$module] = (int)(!isset($currentModules[$module]) || $currentModules[$module]);
         }
 
-        if (array_diff_assoc($currentModules, $result) || array_diff_assoc($result, $currentModules)) {
+        $missingInCodebase = array_diff_assoc($currentModules, $result);
+        $missingInConfig = array_diff_assoc($result, $currentModules);
+
+        if ($missingInCodebase || $missingInConfig) {
             $output->writeln('<error>Contents of `config.php` is not up to date</error>');
+
+            if ($missingInCodebase) {
+                $output->writeln(
+                    "Modules should be removed from `config.php`: " . implode(', ', array_keys($missingInCodebase)),
+                    OutputInterface::VERBOSITY_VERBOSE
+                );
+            }
+
+            if ($missingInConfig) {
+                $output->writeln(
+                    "Modules missing from `config.php`: " . implode(', ', array_keys($missingInConfig)),
+                    OutputInterface::VERBOSITY_VERBOSE
+                );
+            }
 
             return Cli::RETURN_FAILURE;
         }
