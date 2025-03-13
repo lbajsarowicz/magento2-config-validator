@@ -48,5 +48,5 @@ jobs:
       - name: Install Composer Dependencies
         run: "composer2 install --no-interaction --no-progress --no-dev --prefer-dist"
       - name: Verify 'config.php'
-        run: bin/magento setup:config:validate
+        run: bin/magento setup:config:validate -v
 ```
