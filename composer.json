@@ -2,7 +2,7 @@
   "name": "lbajsarowicz/module-config-validator",
   "version": "1.0.2",
   "description": "N/A",
-  "type": "magento2-module",
+  "type": "magento2-library",
   "require": {
     "magento/framework": "*"
   },
